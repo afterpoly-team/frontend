@@ -1,54 +1,24 @@
-import React, { Component } from 'react'
-import './Content.css'
+import React, { Component } from "react";
+import { Route, BrowserRouter } from "react-router";
+import { Link, NavLink } from "react-router-dom";
+import "./Content.css";
+import Event from "./Event";
+import EventList from "./EventList";
+import Home from "./Home";
 
 class Content extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            result: {
-                url: '',
-                title: '',
-                creation_date: '',
-                description: '',
-                event_date: '',
-                link: ''
-            },
-            eventsList: []
-        };
-    }
-    async componentDidMount() {
-        try {
-            const res = await fetch('url');
-            const eventsList = await res.json();
-            this.setState({
-                eventsList
-            });
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    renderEvents = () => {
-        const newEvents = this.state.eventsList;
-        return newEvents.map( item => (
-            <li key={item.id}>
-                Название: {item.title}
-                Ссылка: {item.link}
-                Путь: {item.url}
-            </li>
-        ));
-    };
-    render() {
-        return (
-            <main>
-                <div>
-                    <ul>
-                        {this.renderEvents()}
-                    </ul>
-                </div>
-            </main>
-        )
-    }
+  render() {
+    return (
+      <main>
+        <div>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/events/" component={EventList} />
+          <Route path="/events/:id(\d+)" component={Event} />
+          <br />
+        </div>
+      </main>
+    );
+  }
 }
 
 export default Content;
