@@ -48,6 +48,7 @@ class Event extends Component {
       <div>
         <h2>{newEvent.title}</h2>
         <p>Описание: {newEvent.description}</p>
+        <p>Дата: {new Date(newEvent.event_date).toLocaleDateString()}</p>
         <p>
           Ссылка:{" "}
           <a href={newEvent.link} className="aa">

@@ -13,7 +13,7 @@ class Content extends Component {
         <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/events/" component={EventList} />
-          <Route path="/events/:id(\d+)" component={Event} />
+          <Route path="/events/:id" component={Event} />
           <br />
         </div>
       </main>

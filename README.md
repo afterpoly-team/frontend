@@ -5,4 +5,4 @@ In order to be able to use this on your local PC:
 3) type 'npm install' in terminal
 
 P.S.
-All of this will work only if you install packeges with the -save flag, while working on this project.
+All of this will work only if you install packages with the -save flag, while working on this project.

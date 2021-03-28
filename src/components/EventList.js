@@ -31,17 +31,6 @@ class EventList extends Component {
     }
   }
 
-  getNewUrl = (url_to_event) => {
-    var PREFIX = "http://localhost:8000/api/";
-    let str1 = url_to_event.substr(
-      url_to_event.lastIndexOf(PREFIX) + PREFIX.length - 1
-    );
-
-    let url = "http://localhost:3000" + str1;
-    let id = url[url.length - 2];
-
-    return url;
-  };
 
   renderEvents = () => {
     const newEvents = this.state.eventsList;
@@ -53,9 +42,10 @@ class EventList extends Component {
             Организаторы
           </a>
         </p>
-        <a href={this.getNewUrl(item.url)} className="aa">
+        
+        <Link to={`/events/${item.id}`} className="aa">
           To this event
-        </a>
+        </Link>
       </li>
     ));
   };

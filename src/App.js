@@ -6,17 +6,20 @@ import NaVbar from "./components/NaVbar";
 import Content from "./components/Content";
 import Event from "./components/Event";
 import { BrowserRouter, Link, Route } from "react-router-dom";
+import { LanguageProvider } from "./context/Language";
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
-        <div className="wrapper">
-          <Header />
-          <NaVbar />
-          <Content />
-        </div>
-      </BrowserRouter>
+      <LanguageProvider>
+        <BrowserRouter>
+          <div className="wrapper">
+            <Header />
+            <NaVbar />
+            <Content />
+          </div>
+        </BrowserRouter>
+      </LanguageProvider>
     );
   }
 }
