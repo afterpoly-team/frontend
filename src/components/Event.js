@@ -1,72 +1,65 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./Content.css";
+import { useLanguage } from "../context/Language"
+import { getLanguage } from "../utils/getLanguage" 
 
-class Event extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      result: {
-        url: "",
-        id: "",
-        title: "",
-        creation_date: "",
-        description: "",
-        event_date: "",
-        link: "",
-      },
-    };
-  }
-  async componentDidMount() {
+const initialState = {
+  result: {
+    url: "",
+    id: "",
+    title: "",
+    creation_date: "",
+    description: "",
+    event_date: "",
+    link: "",
+  },
+};
+
+const Event = (props) => {
+  const { language } = useLanguage();
+  const currentLanguage = getLanguage(language);
+
+  const [state, setState] = useState(initialState);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(async () => {
     try {
-      //   let PREFIX = "http://localhost:3000/events/";
-      //   console.log("OBRATI VNIMANIEEEEEEEEEEEEEE");
-      //   console.log(this.props);
-      //   const id = window.location.href.substr(
-      //     window.location.href.lastIndexOf(PREFIX) + PREFIX.length - 1
-      //   );
-
-      const id = this.props.match.params.id;
-      console.log(id);
-
+      setLoading(true);
+      const id = props.match.params.id;
       const res = await fetch(`http://localhost:8000/api/events/${id}`);
       const event = await res.json();
 
-      this.setState({
-        result: event,
-      });
-
-      //   console.log(this.state.result);
+      setState((prevState) => ({ ...prevState, result: event }));
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
-  }
+  });
 
-  renderEvent = () => {
-    const newEvent = this.state.result;
+  const renderEvent = () => {
+    const { result } = state;
 
     return (
       <div>
-        <h2>{newEvent.title}</h2>
-        <p>Описание: {newEvent.description}</p>
-        <p>Дата: {new Date(newEvent.event_date).toLocaleDateString()}</p>
+        <h2>{result.title}</h2>
+        <p>{currentLanguage.description}: {result.description}</p>
+        <p>{currentLanguage.date}: {new Date(result.event_date).toLocaleDateString()}</p>
         <p>
-          Ссылка:{" "}
-          <a href={newEvent.link} className="aa">
-            {newEvent.link}
+          {currentLanguage.link}:{" "}
+          <a href={result.link} className="aa">
+            {result.link}
           </a>
         </p>
-        <h2>ЭТО ИВЕНТ</h2>
       </div>
     );
   };
 
-  render() {
-    return (
-      <main>
-        <div>{this.renderEvent()}</div>
-      </main>
-    );
-  }
-}
+  return (
+    <main>
+      <div>{renderEvent()}</div>
+    </main>
+  );
+};
 
 export default Event;

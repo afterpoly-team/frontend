@@ -5,7 +5,7 @@ import { useLanguage } from "../context/Language"
 import { getLanguage } from "../utils/getLanguage" 
 
 
-let NaVbar = () => {
+const NaVbar = () => {
   const { language } = useLanguage();
   const currentLanguage = getLanguage(language);
   console.log("NAVBAR ", language);

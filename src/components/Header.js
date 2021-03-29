@@ -3,7 +3,7 @@ import './Header.css'
 import Language from './Language'
 import Search from './Search'
 
-let Header = () => {
+const Header = () => {
     return(
         <div className='head'>
             <Search />
