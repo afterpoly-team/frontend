@@ -27,15 +27,15 @@ const Event = (props) => {
       setLoading(true);
       const id = props.match.params.id;
       const res = await fetch(`http://localhost:8000/api/events/${id}`);
-      const event = await res.json();
+      const result = await res.json();
 
-      setState((prevState) => ({ ...prevState, result: event }));
-      setLoading(false);
+      setState((prevState) => ({ ...prevState, result }));
+      setLoading(false);  
     } catch (error) {
       setLoading(false);
       console.log(error);
     }
-  });
+  }, []);
 
   const renderEvent = () => {
     const { result } = state;
