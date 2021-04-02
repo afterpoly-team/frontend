@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Content.css";
-import { useLanguage } from "../context/Language"
-import { getLanguage } from "../utils/getLanguage" 
+import { useLanguage } from "../context/Language";
+import { getLanguage } from "../utils/getLanguage";
 
 const initialState = {
   result: {
@@ -30,7 +30,7 @@ const Event = (props) => {
       const result = await res.json();
 
       setState((prevState) => ({ ...prevState, result }));
-      setLoading(false);  
+      setLoading(false);
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -43,8 +43,13 @@ const Event = (props) => {
     return (
       <div>
         <h2>{result.title}</h2>
-        <p>{currentLanguage.description}: {result.description}</p>
-        <p>{currentLanguage.date}: {new Date(result.event_date).toLocaleDateString()}</p>
+        <p>
+          {currentLanguage.description}: {result.description}
+        </p>
+        <p>
+          {currentLanguage.date}:{" "}
+          {new Date(result.event_date).toLocaleDateString()}
+        </p>
         <p>
           {currentLanguage.link}:{" "}
           <a href={result.link} className="aa">
