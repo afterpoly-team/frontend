@@ -15,8 +15,6 @@ const initialState = {
   },
 };
 
-// * Very important comment
-
 const Event = (props) => {
   const { language } = useLanguage();
   const currentLanguage = getLanguage(language);
