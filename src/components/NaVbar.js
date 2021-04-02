@@ -20,9 +20,6 @@ const NaVbar = () => {
           <NavLink to="/events/">{currentLanguage.events}</NavLink>
         </li>
         <li>
-          <NavLink to="#s">{currentLanguage.personalArea}</NavLink>
-        </li>
-        <li>
           <NavLink to="#s">{currentLanguage.contacts}</NavLink>
         </li>
       </ul>
