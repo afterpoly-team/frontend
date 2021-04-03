@@ -6,16 +6,15 @@ import EventList from "./EventList";
 import Home from "./Home";
 
 const Content = () => {
-    return (
-      <main>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/events/" component={EventList} />
-          <Route path="/events/:id" component={Event} />
-          <br />
-        </div>
-      </main>
-    );
-}
+  return (
+    <main>
+      <div>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/events/" component={EventList} />
+        <Route path="/events/:id" component={Event} />
+      </div>
+    </main>
+  );
+};
 
 export default Content;
