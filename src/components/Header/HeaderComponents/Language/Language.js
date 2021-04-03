@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLanguage } from "../context/Language";
+import { useLanguage } from "./context/Language";
 
 const Language = () => {
   const { language, setLanguage } = useLanguage("Rus");

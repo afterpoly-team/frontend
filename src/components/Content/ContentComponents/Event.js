@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Content.css";
+import "../Content.css";
 import { useLanguage } from "../context/Language"
 import { getLanguage } from "../utils/getLanguage" 
 

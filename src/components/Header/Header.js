@@ -1,7 +1,7 @@
 import React from 'react'
 import './Header.css'
-import Language from './Language'
-import Search from './Search'
+import Language from './HeaderComponents/Language/translater'
+import Search from './HeaderComponents/Search'
 
 const Header = () => {
     return(

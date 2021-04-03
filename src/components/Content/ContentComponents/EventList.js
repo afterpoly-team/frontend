@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
-import "./Content.css";
+import "../Content.css";
 import { useLanguage } from "../context/Language"
 import { getLanguage } from "../utils/getLanguage" 
 

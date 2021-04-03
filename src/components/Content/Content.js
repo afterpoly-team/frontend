@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Route } from "react-router";
 import "./Content.css";
-import Event from "./Event";
-import EventList from "./EventList";
+import Event from "./ContentComponents/Event";
+import EventList from "./ContentComponents/EventList";
 import Home from "./Home";
 
 const Content = () => {
