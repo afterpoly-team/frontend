@@ -31,7 +31,6 @@ const EventList = (props) => {
     try {
       setLoading(true);
       const langUrl = currentLanguage.urlName;
-      // alert(langUrl);
       const res = await fetch(`http://localhost:8000/${langUrl}/api/events/`);
       const eventsList = await res.json();
 

@@ -1,32 +1,36 @@
 import React, { useState } from "react";
 import { useLanguage } from "../context/Language";
-import { Route } from "react-router";
+import { Route, useHistory } from "react-router";
 
 const Language = () => {
   const { language, setLanguage } = useLanguage();
-
+  const history = useHistory();
   console.log(language);
 
-  // handleChange();
-
   return (
-    // <button
-    //   type='button'
-    //   onClick={() => { history.push('/new-location') }}
-    // >
-    //   Click Me!
-    // </button>
     <Route
       render={({ history }) => (
         <select
           value={language}
           onChange={(event) => {
-            history.push("/");
-            // location.reload();
-            // window.history.push("http://localhost:3000/");
-            // window.history.push("/");
-            setLanguage(event.target.value);
+            // ! reloads but forces value to default
+            // history.go(0);
+
+            // ! reloads but forces value to default
+            // let currentUrl = window.location.pathname;
+            // history.push(currentUrl);
             // window.location.reload(false);
+
+            // ! reloads but forces value to default
+            // localStorage.setItem('langSelect', event.target.value);
+            // window.location.reload(false);
+            // setLanguage(localStorage.getItem('langSelect'));
+
+            // * works fine but redirect
+            history.push("/");
+
+            // *setting language
+            setLanguage(event.target.value);
           }}
         >
           <option value="Rus">Русский</option>

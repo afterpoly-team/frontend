@@ -25,8 +25,11 @@ const Event = (props) => {
   useEffect(async () => {
     try {
       setLoading(true);
+      const langUrl = currentLanguage.urlName;
       const id = props.match.params.id;
-      const res = await fetch(`http://localhost:8000/api/events/${id}`);
+      const res = await fetch(
+        `http://localhost:8000/${langUrl}/api/events/${id}`
+      );
       const result = await res.json();
 
       setState((prevState) => ({ ...prevState, result }));
