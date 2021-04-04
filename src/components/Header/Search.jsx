@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Event from '../CreateEvent'
 
 class Search extends Component {
     constructor(props) {
@@ -33,7 +32,6 @@ class Search extends Component {
             <div>
                 <input placeholder='Enter the event' />
                 <button onClick={this.fetchEvent}>Search</button>
-                <Event name={this.state.fetchEvent.name} subs={this.state.fetchEvent.subs} />
             </div>
         )
     }

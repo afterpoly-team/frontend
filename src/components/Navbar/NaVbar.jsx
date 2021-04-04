@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 import { useLanguage } from "../../context/LanguageTranslator"
-import { getLanguage } from "../../utils/getLanguage" 
+import { getLanguage } from "../../utils/getLanguage"
 
 
 const NaVbar = () => {
