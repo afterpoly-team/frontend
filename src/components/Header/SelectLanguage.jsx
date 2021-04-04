@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useLanguage } from "../context/Language";
+import { useLanguage } from "../../context/LanguageTranslator";
 
-const Language = () => {
+const SelectLanguage = () => {
   const { language, setLanguage } = useLanguage("Rus");
 
   console.log(language);
@@ -20,4 +20,4 @@ const Language = () => {
   );
 };
 
-export default Language;
+export default SelectLanguage;

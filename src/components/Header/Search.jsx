@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import Event from './CreateEvent'
+import Event from '../CreateEvent'
 
 class Search extends Component {
     constructor(props) {
