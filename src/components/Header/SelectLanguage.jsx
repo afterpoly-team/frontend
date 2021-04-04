@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useLanguage } from "../context/Language";
-import { Route, useHistory } from "react-router";
 
-const Language = () => {
-  const { language, setLanguage } = useLanguage();
+import { useLanguage } from "../../context/LanguageTranslator";
+import { Route, useHistory } from "react-router";
+  
+const SelectLanguage = () => {
+  const { language, setLanguage } = useLanguage("Rus");
   const history = useHistory();
+
   console.log(language);
 
   return (
@@ -28,4 +30,4 @@ const Language = () => {
   );
 };
 
-export default Language;
+export default SelectLanguage;
