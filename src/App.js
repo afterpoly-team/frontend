@@ -7,6 +7,7 @@ import Content from "./components/Content/Content";
 import { BrowserRouter } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageTranslator";
 
+/*.*/
 const App = (props) => {
   return (
     <LanguageProvider>
