@@ -16,8 +16,6 @@ const useLanguage = () => {
 };
 
 const LanguageProvider = (props) => {
-  //? Why is this working?????
-  localStorage.getItem("langSelect");
   const [language, setLanguage] = useState(localStorage.getItem("langSelect"));
 
   useEffect(() => {
