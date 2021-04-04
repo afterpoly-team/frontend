@@ -13,24 +13,10 @@ const Language = () => {
         <select
           value={language}
           onChange={(event) => {
-            // ! reloads but forces value to default
-            // history.go(0);
-
-            // ! reloads but forces value to default
-            // let currentUrl = window.location.pathname;
-            // history.push(currentUrl);
-            // window.location.reload(false);
-
-            // ! reloads but forces value to default
-            // localStorage.setItem('langSelect', event.target.value);
-            // window.location.reload(false);
-            // setLanguage(localStorage.getItem('langSelect'));
-
-            // * works fine but redirect
-            history.push("/");
-
-            // *setting language
-            setLanguage(event.target.value);
+            localStorage.setItem("langSelect", event.target.value);
+            window.location.reload();
+            setLanguage(localStorage.getItem("langSelect"));
+            // history.push("/");
           }}
         >
           <option value="Rus">Русский</option>

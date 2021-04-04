@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useMemo, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useDebugValue,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 const LanguageContext = createContext();
 
@@ -9,7 +16,13 @@ const useLanguage = () => {
 };
 
 const LanguageProvider = (props) => {
-  const [language, setLanguage] = useState("Rus");
+  localStorage.getItem("langSelect", "Rus");
+  const [language, setLanguage] = useState(localStorage.getItem("langSelect"));
+
+  useEffect(() => {
+    setLanguage(localStorage.getItem("langSelect"));
+  }, []);
+
   const value = useMemo(() => [language, setLanguage], [language]);
 
   return <LanguageContext.Provider value={value} {...props} />;
