@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Content.css";
 
-import { useLanguage } from "../../context/LanguageTranslator"
-import { getLanguage } from "../../utils/getLanguage"
+import { useLanguage } from "../../context/LanguageTranslator";
+import { getLanguage } from "../../utils/getLanguage";
 
 const initialState = {
   result: {
@@ -17,9 +17,9 @@ const initialState = {
   },
   eventsList: [],
 };
-// const obj = { a: 1, b: 2 };
+//* const obj = { a: 1, b: 2 };
 
-// const { b } = obj;
+//* const { b } = obj;
 
 const EventList = (props) => {
   const { language } = useLanguage();
