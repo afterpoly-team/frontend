@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Content.css";
-import { useLanguage } from "../../context/LanguageTranslator"
-import { getLanguage } from "../../utils/getLanguage"
+
+import { useLanguage } from "../../context/LanguageTranslator";
+import { getLanguage } from "../../utils/getLanguage";
 
 const initialState = {
   result: {
@@ -16,9 +17,9 @@ const initialState = {
   },
   eventsList: [],
 };
-// const obj = { a: 1, b: 2 };
+//* const obj = { a: 1, b: 2 };
 
-// const { b } = obj;
+//* const { b } = obj;
 
 const EventList = (props) => {
   const { language } = useLanguage();
@@ -30,7 +31,8 @@ const EventList = (props) => {
   useEffect(async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8000/api/events/");
+      const langUrl = currentLanguage.urlName;
+      const res = await fetch(`http://localhost:8000/${langUrl}/api/events/`);
       const eventsList = await res.json();
 
       setState((prevState) => ({ ...prevState, eventsList }));
@@ -47,8 +49,7 @@ const EventList = (props) => {
     return eventsList.map((item) => (
       <li key={item.id}>
         <p>
-          {currentLanguage.title}:
-          {item.title}
+          {currentLanguage.title}:{item.title}
         </p>
         <p>
           <a href={item.link} className="aa">

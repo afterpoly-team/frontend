@@ -14,4 +14,7 @@ export default {
   description: "Описание",
   date: "Дата",
   link: "Ссылка",
+
+  //backend-url support
+  urlName: "ru",
 };

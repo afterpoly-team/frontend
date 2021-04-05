@@ -1,21 +1,24 @@
 import React, { useState } from "react";
+
 import { useLanguage } from "../../context/LanguageTranslator";
+import { Route, useHistory } from "react-router";
 
 const SelectLanguage = () => {
   const { language, setLanguage } = useLanguage("Rus");
-
-  console.log(language);
+  const history = useHistory();
 
   return (
     <select
       value={language}
       onChange={(event) => {
-        setLanguage(event.target.value);
+        localStorage.setItem("langSelect", event.target.value);
+        window.location.reload();
+        setLanguage(localStorage.getItem("langSelect"));
       }}
     >
       <option value="Rus">Русский</option>
       <option value="Eng">English</option>
-      <option value="Fr">French</option>
+      <option value="Fr">Français</option>
     </select>
   );
 };

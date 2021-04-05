@@ -14,4 +14,7 @@ export default {
   description: "La description",
   date: "Date",
   link: "Lien",
+
+  //backend-url support
+  urlName: "fr",
 };
