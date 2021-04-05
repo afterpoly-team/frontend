@@ -51,7 +51,6 @@ const EventList = (props) => {
       const res = await fetch(currentUrl);
       const fullAPI = await res.json();
 
-      console.log("USE EFFECT USED");
       setState((prevState) => ({ ...prevState, fullAPI, currentUrl }));
       setLoading(false);
     } catch (error) {
@@ -63,8 +62,6 @@ const EventList = (props) => {
   const renderEvents = () => {
     const eventsList = state.fullAPI.results;
 
-    console.log("STATE:", state);
-    // console.log("LIST:", eventsList);
     return eventsList.map((item) => (
       <li key={item.id}>
         <p>
