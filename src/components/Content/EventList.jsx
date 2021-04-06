@@ -6,16 +6,12 @@ import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
 
 const initialState = {
-  result: {
-    url: "",
-    id: "",
-    title: "",
-    creation_date: "",
-    description: "",
-    event_date: "",
-    link: "",
+  fullAPI: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
   },
-  eventsList: [],
 };
 //* const obj = { a: 1, b: 2 };
 
@@ -32,10 +28,18 @@ const EventList = (props) => {
     try {
       setLoading(true);
       const langUrl = currentLanguage.urlName;
-      const res = await fetch(`http://localhost:8000/${langUrl}/api/events/`);
-      const eventsList = await res.json();
+      const defaultUrl = `http://localhost:8000/${langUrl}/api/events/`;
+      // * url which we will fetch
+      let currentUrl;
 
-      setState((prevState) => ({ ...prevState, eventsList }));
+      localStorage.clear();
+
+      currentUrl = defaultUrl;
+
+      const res = await fetch(currentUrl);
+      const fullAPI = await res.json();
+
+      setState((prevState) => ({ ...prevState, fullAPI }));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -44,7 +48,7 @@ const EventList = (props) => {
   }, []);
 
   const renderEvents = () => {
-    const { eventsList } = state;
+    const eventsList = state.fullAPI.results;
 
     return eventsList.map((item) => (
       <li key={item.id}>
