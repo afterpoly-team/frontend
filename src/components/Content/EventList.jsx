@@ -32,8 +32,6 @@ const EventList = (props) => {
       // * url which we will fetch
       let currentUrl;
 
-      localStorage.clear();
-
       currentUrl = defaultUrl;
 
       const res = await fetch(currentUrl);
@@ -71,6 +69,8 @@ const EventList = (props) => {
     <main>
       <div>
         <ul>{renderEvents()}</ul>
+        <button onClick={dec}>&#60;</button>
+        <button onClick={inc}>&#62;</button>
       </div>
     </main>
   );
