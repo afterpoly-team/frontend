@@ -10,14 +10,14 @@
 }
 
 .pageNumbers li.active {
-  background-color: white;
-  color: rgb(16, 73, 206);
+  background-color: rgb(103, 131, 184);
+  color: rgb(110, 9, 9);
 }
 
 .pageNumbers li button {
   background-color: transparent;
   border: none;
-  color: white;
+  color: rgb(97, 7, 7);
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -41,5 +41,5 @@
 
 .linkPrevNext {
   color: rgb(36, 6, 6);
-  background-color: salmon;
+  background-color: rgb(194, 28, 10);
 }
