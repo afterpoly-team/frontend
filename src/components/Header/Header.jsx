@@ -1,11 +1,11 @@
 import React from 'react'
-import './Header.css'
+import styles from './Header.module.css'
 import SelectLanguage from './SelectLanguage'
 import Search from './Search'
 
 const Header = () => {
     return(
-        <div className='head'>
+        <div className={styles.head}>
             <Search />
             <SelectLanguage />
         </div>

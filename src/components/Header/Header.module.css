@@ -14,3 +14,15 @@ select {
     position: absolute;
     right: 0;
 }
+
+.head {
+    grid-column: 1/4;
+    grid-row: 1/4;
+    height: 100px;
+    background-color: green;
+    position: relative;
+}
+
+.slider {
+
+}

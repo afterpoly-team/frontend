@@ -1,0 +1,14 @@
+ul {
+    text-align: center;
+}
+
+a {
+    color: white;
+}
+
+.nav {
+    height: 800px;
+    background-color: purple;
+    position: relative;
+    padding: 2em;
+}

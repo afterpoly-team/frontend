@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
+import styles from "./Navbar.module.css";
 import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
 
@@ -9,7 +9,7 @@ const NaVbar = () => {
   const currentLanguage = getLanguage(language);
 
   return (
-    <div className="nav">
+    <div className={styles.nav}>
       <ul type="none">
         <li>
           <NavLink to="/">{currentLanguage.home}</NavLink>
