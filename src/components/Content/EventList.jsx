@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import "./Content.css";
+import "./Pagination";
 
 import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
+import Pagination from "./Pagination";
 
 const initialState = {
   fullAPI: {
@@ -11,6 +13,7 @@ const initialState = {
     next: null,
     previous: null,
     results: [],
+    total_pages: 0,
   },
 };
 //* const obj = { a: 1, b: 2 };
@@ -28,11 +31,10 @@ const EventList = (props) => {
     try {
       setLoading(true);
       const langUrl = currentLanguage.urlName;
-      const defaultUrl = `http://localhost:8000/${langUrl}/api/events/`;
+      const page = props.match.params.page;
+      const defaultUrl = `http://localhost:8000/${langUrl}/api/events/?page=${page}`;
       // * url which we will fetch
       let currentUrl;
-
-      localStorage.clear();
 
       currentUrl = defaultUrl;
 
@@ -60,7 +62,7 @@ const EventList = (props) => {
             {currentLanguage.organizers}
           </a>
         </p>
-        <Link to={`/events/${item.id}`} href={item.url} className="aa">
+        <Link to={`/events/id=${item.id}`} className="aa">
           {currentLanguage.linkToEvent}
         </Link>
       </li>
@@ -71,6 +73,12 @@ const EventList = (props) => {
     <main>
       <div>
         <ul>{renderEvents()}</ul>
+        <Pagination
+          totalPages={state.fullAPI.total_pages}
+          next={state.fullAPI.next}
+          previous={state.fullAPI.previous}
+          currentPage={props.match.params.page}
+        />
       </div>
     </main>
   );
