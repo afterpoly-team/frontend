@@ -6,7 +6,6 @@ import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
 
 const initialState = {
-  currentUrl: null,
   fullAPI: {
     count: 0,
     next: null,
@@ -25,14 +24,6 @@ const EventList = (props) => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  // * if the curUrl from localStore is with wrong language prefix,
-  // * it returns the new correct url
-  const resolveUrls = (eventsUrl, currentUrl) => {
-    let currentUrlPure = currentUrl.substring(0, eventsUrl.length);
-    let result = currentUrl.replace(currentUrlPure, eventsUrl);
-    return result;
-  };
-
   useEffect(async () => {
     try {
       setLoading(true);
@@ -41,17 +32,14 @@ const EventList = (props) => {
       // * url which we will fetch
       let currentUrl;
 
-      // * if the inc/dec buttons were clicked, we resolve new curUrl
-      if (localStorage.getItem("curUrl")) {
-        currentUrl = localStorage.getItem("curUrl");
-        currentUrl = resolveUrls(defaultUrl, currentUrl);
-      } else {
-        currentUrl = defaultUrl;
-      }
+      localStorage.clear();
+
+      currentUrl = defaultUrl;
+
       const res = await fetch(currentUrl);
       const fullAPI = await res.json();
 
-      setState((prevState) => ({ ...prevState, fullAPI, currentUrl }));
+      setState((prevState) => ({ ...prevState, fullAPI }));
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -79,32 +67,10 @@ const EventList = (props) => {
     ));
   };
 
-  const inc = () => {
-    let currentUrl = state.currentUrl;
-    if (state.fullAPI.next) {
-      currentUrl = state.fullAPI.next;
-    }
-    setState((prevState) => ({ ...prevState, currentUrl }));
-    localStorage.setItem("curUrl", currentUrl);
-    window.location.reload();
-  };
-
-  const dec = () => {
-    let currentUrl = state.currentUrl;
-    if (state.fullAPI.previous) {
-      currentUrl = state.fullAPI.previous;
-    }
-    setState((prevState) => ({ ...prevState, currentUrl }));
-    localStorage.setItem("curUrl", currentUrl);
-    window.location.reload();
-  };
-
   return (
     <main>
       <div>
         <ul>{renderEvents()}</ul>
-        <button onClick={dec}>-1</button>
-        <button onClick={inc}>+1</button>
       </div>
     </main>
   );

@@ -16,10 +16,18 @@ const useLanguage = () => {
 };
 
 const LanguageProvider = (props) => {
-  const [language, setLanguage] = useState(localStorage.getItem("langSelect"));
+  const [language, setLanguage] = useState(
+    sessionStorage.getItem("langSelect")
+      ? sessionStorage.getItem("langSelect")
+      : "Rus"
+  );
 
   useEffect(() => {
-    setLanguage(localStorage.getItem("langSelect"));
+    setLanguage(
+      sessionStorage.getItem("langSelect")
+        ? sessionStorage.getItem("langSelect")
+        : "Rus"
+    );
   }, []);
 
   const value = useMemo(() => [language, setLanguage], [language]);
