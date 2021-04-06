@@ -103,8 +103,8 @@ const EventList = (props) => {
     <main>
       <div>
         <ul>{renderEvents()}</ul>
-        <button onClick={dec}>-1</button>
-        <button onClick={inc}>+1</button>
+        <button onClick={dec}>&#60;</button>
+        <button onClick={inc}>&#62;</button>
       </div>
     </main>
   );
