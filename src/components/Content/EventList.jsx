@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
 import "./Content.css";
-import "./Pagination";
 
 import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
@@ -16,9 +15,6 @@ const initialState = {
     total_pages: 0,
   },
 };
-//* const obj = { a: 1, b: 2 };
-
-//* const { b } = obj;
 
 const EventList = (props) => {
   const { language } = useLanguage();
@@ -39,6 +35,7 @@ const EventList = (props) => {
       const res = await fetch(defaultUrl);
       const fullAPI = await res.json();
 
+      // now useless
       setState((prevState) => ({ ...prevState, fullAPI }));
       setLoading(false);
     } catch (error) {
@@ -76,7 +73,7 @@ const EventList = (props) => {
           totalPages={state.fullAPI.total_pages}
           next={state.fullAPI.next}
           previous={state.fullAPI.previous}
-          currentPage={props.page}
+          currentPage={props.match.params.page}
         />
       </div>
     </main>
