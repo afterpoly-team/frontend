@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './EventTemplate.module.css'
 
-const EventTemplate = () => {
+const EventTemplate = (props) => {
     return (
         <div className={styles.cardWrapper}>
             <div className={styles.cardPhoto}>
@@ -10,10 +10,10 @@ const EventTemplate = () => {
                     alt='1'/>
             </div>
             <div className={styles.title}>
-                Hello!
+                {props.title}
             </div>
             <div className={styles.description}>
-                World!
+                gg
             </div>
         </div>
     )

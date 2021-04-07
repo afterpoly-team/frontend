@@ -14,10 +14,6 @@ const Content = () => {
                 <Route exact path="/events/" component={EventList}/>
                 <Route path="/events/:id" component={Event}/>
             </div>
-            <EventTemplate/>
-            <EventTemplate/>
-            <EventTemplate/>
-            <EventTemplate/>
         </div>
     );
 };
