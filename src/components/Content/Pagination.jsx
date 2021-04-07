@@ -17,16 +17,22 @@ const Pagination = (props) => {
 
   const renderPageNumbers = pages.map((number) => {
     return (
-      <li
-        key={number}
-        id={number}
-        onClick={() => {
-          window.location.href = handleClick(number);
-        }}
-        // className={props.currentPage == number ? "active" : null}
-      >
-        {number}
+      <li>
+        <Link className="linkPrevNext" to={`/events/page=${number}`}>
+          {number}
+        </Link>
       </li>
+      // <li
+      //   key={number}
+      //   id={number}
+      //   // onClick={() => {
+      //   //   window.location.href = handleClick(number);
+      //   // }}
+      //   // className={props.currentPage == number ? "active" : null}
+      // >
+      //   {/* {number} */}
+      //   <Link to={`/events/page=${number}`}>{number}</Link>
+      // </li>
     );
   });
 

@@ -27,6 +27,21 @@ const EventList = (props) => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
+  const fetchEvents = async (page) => {
+    console.log("FETCH_EVENTS");
+    const langUrl = currentLanguage.urlName;
+    const defaultUrl = `http://localhost:8000/${langUrl}/api/events/?page=${page}`;
+    // * url which we will fetch
+    let currentUrl;
+
+    currentUrl = defaultUrl;
+
+    const res = await fetch(currentUrl);
+    const fullAPI = await res.json();
+
+    setState((prevState) => ({ ...prevState, fullAPI }));
+  };
+
   useEffect(async () => {
     try {
       setLoading(true);
@@ -78,6 +93,7 @@ const EventList = (props) => {
           next={state.fullAPI.next}
           previous={state.fullAPI.previous}
           currentPage={props.page}
+          fetch={fetchEvents}
         />
       </div>
     </main>
