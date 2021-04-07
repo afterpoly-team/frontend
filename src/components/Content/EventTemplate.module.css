@@ -1,0 +1,44 @@
+.cardWrapper {
+    margin: 1em;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-gap: 1em;
+    border: black;
+}
+
+.cardPhoto {
+    position: relative;
+    grid-column: 1;
+    grid-row: 1/4;
+    height: auto;
+}
+
+.photo {
+    position: absolute;
+    max-width: none;
+    min-width: auto;
+    min-height: auto;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    height: 1.5em;
+    outline: 1px solid black;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.description {
+    outline: 1px solid black;
+    grid-column: 2;
+    grid-row: 2;
+    height: 8em;
+}
