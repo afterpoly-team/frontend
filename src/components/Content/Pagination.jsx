@@ -8,6 +8,7 @@ const Pagination = (props) => {
 
   const initialPage = props.currentPage;
   const totalPages = props.totalPages;
+
   const [currentPage, setCurrentPage] = useState(initialPage);
 
   const [prevPage, setPrevPage] = useState(
@@ -21,6 +22,38 @@ const Pagination = (props) => {
     currentPage === totalPages ? initialPage : initialPage + 1
   );
 
+  const [maxPages, setMaxTotalPages] = useState(5);
+  // const [displayPages, setDisplayPages] = useState(null);
+
+  // const matrix = new Array(Math.ceil(totalPages / maxPages));
+
+  // for (var i = 0; i < matrix.length; i++) {
+  //   matrix[i] = new Array(maxPages);
+  // }
+
+  // console.log(matrix);
+
+  const pagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+  console.log(pagesArray);
+
+  const arrayToMatrix = (array, rowsSize) => {
+    let matrix = [],
+      i,
+      k;
+    for (i = 0, k = -1; i < array.length; i++) {
+      if (i % rowsSize === 0) {
+        k++;
+        matrix[k] = [];
+      }
+      matrix[k].push(array[i]);
+    }
+    return matrix;
+  };
+
+  const pagesMatrix = arrayToMatrix(pagesArray, maxPages);
+  console.log(pagesMatrix);
+
+  // fills array with trash, size===totalPages
   const pages = new Array(totalPages).fill();
 
   // ! this is a crutch as a BUGFIX
@@ -31,6 +64,7 @@ const Pagination = (props) => {
   ) {
     setNextPage(currentPage);
   }
+  // !______________________________
 
   const handleClick = (number) => {
     setCurrentPage(number);
@@ -40,6 +74,7 @@ const Pagination = (props) => {
 
   const renderPageNumbers = pages.map((_, index) => {
     const number = index + 1;
+
     return (
       <li className={currentPage === number ? "gggg" : null}>
         <Link
