@@ -15,7 +15,7 @@ const NaVbar = () => {
           <NavLink to="/">{currentLanguage.home}</NavLink>
         </li>
         <li>
-          <NavLink to="/events/page=1">{currentLanguage.events}</NavLink>
+          <NavLink to="/events/1">{currentLanguage.events}</NavLink>
         </li>
         <li>
           <NavLink to="#s">{currentLanguage.contacts}</NavLink>

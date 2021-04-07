@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import "./Content.css";
 import "./Pagination";
 
@@ -27,20 +27,7 @@ const EventList = (props) => {
   const [state, setState] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
-  const fetchEvents = async (page) => {
-    console.log("FETCH_EVENTS");
-    const langUrl = currentLanguage.urlName;
-    const defaultUrl = `http://localhost:8000/${langUrl}/api/events/?page=${page}`;
-    // * url which we will fetch
-    let currentUrl;
-
-    currentUrl = defaultUrl;
-
-    const res = await fetch(currentUrl);
-    const fullAPI = await res.json();
-
-    setState((prevState) => ({ ...prevState, fullAPI }));
-  };
+  const params = useParams();
 
   useEffect(async () => {
     try {
@@ -48,12 +35,8 @@ const EventList = (props) => {
       const langUrl = currentLanguage.urlName;
       const page = props.match.params.page;
       const defaultUrl = `http://localhost:8000/${langUrl}/api/events/?page=${page}`;
-      // * url which we will fetch
-      let currentUrl;
 
-      currentUrl = defaultUrl;
-
-      const res = await fetch(currentUrl);
+      const res = await fetch(defaultUrl);
       const fullAPI = await res.json();
 
       setState((prevState) => ({ ...prevState, fullAPI }));
@@ -62,7 +45,8 @@ const EventList = (props) => {
       setLoading(false);
       console.log(error);
     }
-  }, []);
+  }, [params.page, currentLanguage.urlName]);
+  // [] mounting by initialization once
 
   const renderEvents = () => {
     const eventsList = state.fullAPI.results;
@@ -77,7 +61,7 @@ const EventList = (props) => {
             {currentLanguage.organizers}
           </a>
         </p>
-        <Link to={`/events/id=${item.id}`} className="aa">
+        <Link to={`/event/${item.id}`} className="aa">
           {currentLanguage.linkToEvent}
         </Link>
       </li>
@@ -93,7 +77,6 @@ const EventList = (props) => {
           next={state.fullAPI.next}
           previous={state.fullAPI.previous}
           currentPage={props.page}
-          fetch={fetchEvents}
         />
       </div>
     </main>

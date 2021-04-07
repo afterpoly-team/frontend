@@ -11,9 +11,7 @@ const SelectLanguage = () => {
     <select
       value={language}
       onChange={(event) => {
-        sessionStorage.setItem("langSelect", event.target.value);
-        window.location.reload();
-        setLanguage(sessionStorage.getItem("langSelect"));
+        setLanguage(event.target.value);
       }}
     >
       <option value="Rus">Русский</option>

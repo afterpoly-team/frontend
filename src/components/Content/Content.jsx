@@ -10,8 +10,8 @@ const Content = () => {
     <main>
       <div>
         <Route exact path="/" component={Home} />
-        <Route exact path="/events/page=:page" component={EventList} />
-        <Route exact path="/events/id=:id" component={Event} />
+        <Route exact path="/events/:page" component={EventList} />
+        <Route exact path="/event/:id" component={Event} />
       </div>
     </main>
   );

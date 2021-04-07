@@ -6,36 +6,34 @@ import "./pagination.css";
 const Pagination = (props) => {
   // * pagination
 
-  const pages = [];
-  for (let i = 1; i <= props.totalPages; ++i) {
-    pages.push(i);
-  }
+  const [currentPage, setCurrentPage] = useState(1);
+  const [prevPage, setPrevPage] = useState(null);
+  const [nextPage, setNextPage] = useState(null);
+
+  const pages = new Array(props.totalPages).fill();
 
   const handleClick = (number) => {
-    return `/events/page=${number}`;
+    setCurrentPage(number);
   };
 
-  const renderPageNumbers = pages.map((number) => {
+  const renderPageNumbers = pages.map((_, index) => {
+    const number = index + 1;
     return (
-      <li>
-        <Link className="linkPrevNext" to={`/events/page=${number}`}>
+      <li className={currentPage == number ? "gggg" : null}>
+        <Link
+          className="linkPrevNext"
+          to={`/events/${number}`}
+          onClick={() => {
+            handleClick(number);
+          }}
+        >
           {number}
         </Link>
       </li>
-      // <li
-      //   key={number}
-      //   id={number}
-      //   // onClick={() => {
-      //   //   window.location.href = handleClick(number);
-      //   // }}
-      //   // className={props.currentPage == number ? "active" : null}
-      // >
-      //   {/* {number} */}
-      //   <Link to={`/events/page=${number}`}>{number}</Link>
-      // </li>
     );
   });
 
+  console.log(props);
   return (
     <div>
       {props.currentPage}
