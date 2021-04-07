@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Link, NavLink} from "react-router-dom";
 import EventTemplate from "./EventTemplate";
-// import "./Content.css";
-
-import { useLanguage } from "../../context/LanguageTranslator";
-import { getLanguage } from "../../utils/getLanguage";
+import {useLanguage} from "../../context/LanguageTranslator";
+import {getLanguage} from "../../utils/getLanguage";
 
 const initialState = {
     fullAPI: {
@@ -14,12 +12,9 @@ const initialState = {
         results: [],
     },
 };
-//* const obj = { a: 1, b: 2 };
-
-//* const { b } = obj;
 
 const EventList = (props) => {
-    const { language } = useLanguage();
+    const {language} = useLanguage();
     const currentLanguage = getLanguage(language);
 
     const [state, setState] = useState(initialState);
@@ -40,7 +35,7 @@ const EventList = (props) => {
             const res = await fetch(currentUrl);
             const fullAPI = await res.json();
 
-            setState((prevState) => ({ ...prevState, fullAPI }));
+            setState((prevState) => ({...prevState, fullAPI}));
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -52,20 +47,8 @@ const EventList = (props) => {
         const eventsList = state.fullAPI.results;
 
         return eventsList.map((item) => (
-            <li key={item.id}>
-                <p>
-                    {currentLanguage.title}:{item.title}
-                </p>
-                <p>
-                    <a href={item.link} className="aa">
-                        {currentLanguage.organizers}
-                    </a>
-                </p>
-                <Link to={`/events/${item.id}`} href={item.url} className="aa">
-                    {currentLanguage.linkToEvent}
-                </Link>
-                <EventTemplate />
-            </li>
+            <EventTemplate title={item.title} description={item.description} identificat={item.id}
+                           link={item.url}/>
         ));
     };
 

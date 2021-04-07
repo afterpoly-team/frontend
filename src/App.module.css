@@ -3,8 +3,8 @@
     padding: 0;
 }
 
-.wrapper {
-    display: grid;
-    grid-template-rows: 2fr max-content;
-    grid-gap: 1em;
-}
+/*.wrapper {*/
+/*    display: grid;*/
+/*    grid-template-rows: max-content;*/
+/*    grid-gap: 1em;*/
+/*}*/
