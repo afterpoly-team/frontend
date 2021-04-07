@@ -42,25 +42,21 @@
 }
 
 .button1 .btn{
-    text-transform: uppercase;
-    text-decoration: none;
-    background: deeppink;
+    content: url('/src/media/menu.png');
+    width: 65px;
     cursor: pointer;
     position: relative;
-    font-size: 16px;
     padding: 10px;
 }
 
-.button1 .close {
-    display: none;
-}
-
 #checkbox1:checked + .panel + .buttonWrap .button1 .open{
-    display: none;
+    transform: rotate(360deg);
+    transition-duration: 2s;
 }
 
-#checkbox1:checked + .panel + .buttonWrap .button1 .close{
-    display: block;
+.button1 .open {
+    transform: rotate(0deg);
+    transition-duration: 1.5s;
 }
 
 #checkbox1:checked + .panel {

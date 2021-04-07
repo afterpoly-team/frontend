@@ -4,10 +4,12 @@ import SelectLanguage from './SelectLanguage'
 import Search from './Search'
 
 const Header = () => {
-    return(
+    const pageWidth = document.documentElement.scrollWidth
+    return (
         <div className={styles.head}>
-            <Search />
-            <SelectLanguage />
+            <div className={styles.bgPhoto} />
+            <Search/>
+            <SelectLanguage/>
         </div>
     )
 }

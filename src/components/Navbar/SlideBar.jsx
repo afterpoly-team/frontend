@@ -27,8 +27,7 @@ const SlideBar = () => {
             </div>
             <div className={styles.buttonWrap}>
                 <label className={styles.button1} htmlFor={styles.checkbox1}>
-                    <div className={`${styles.btn} ${styles.open}`}>Open</div>
-                    <div className={`${styles.btn} ${styles.close}`}>Close</div>
+                    <div className={`${styles.btn} ${styles.open}`} />
                 </label>
             </div>
         </div>

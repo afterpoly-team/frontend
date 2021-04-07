@@ -18,11 +18,17 @@ select {
 .head {
     grid-column: 1/4;
     grid-row: 1/4;
-    height: 100px;
-    background-color: green;
+    height: 300px;
     position: relative;
 }
 
-.slider {
-
+.bgPhoto {
+    position: absolute;
+    height: 300px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('/src/media/spbstu.jpg');
+    background-position: center;
 }
