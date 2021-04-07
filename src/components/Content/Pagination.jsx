@@ -2,28 +2,46 @@ import React, { useState, useEffect } from "react";
 import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import "./Content.css";
 import "./pagination.css";
-import { useLanguage } from "../../context/LanguageTranslator";
-import { getLanguage } from "../../utils/getLanguage";
 
 const Pagination = (props) => {
   // * pagination
-  const { language } = useLanguage();
-  const currentLanguage = getLanguage(language);
 
-  const [currentPage, setCurrentPage] = useState(props.currentPage);
-  const [prevPage, setPrevPage] = useState(null);
-  const [nextPage, setNextPage] = useState(null);
+  const initialPage = props.currentPage;
+  const totalPages = props.totalPages;
+  const [currentPage, setCurrentPage] = useState(initialPage);
 
-  const pages = new Array(props.totalPages).fill();
+  const [prevPage, setPrevPage] = useState(
+    initialPage === 1 ? initialPage : initialPage - 1
+  );
+
+  // ! BUG: when loading the last page from url (which is unlikely),
+  // ! this comparison fails(currentPage != totalPages) and I have no idea why
+  // ! probably it is type problem, but is shouldn't be
+  const [nextPage, setNextPage] = useState(
+    currentPage === totalPages ? initialPage : initialPage + 1
+  );
+
+  const pages = new Array(totalPages).fill();
+
+  // ! this is a crutch as a BUGFIX
+  if (
+    currentPage === initialPage &&
+    currentPage === totalPages &&
+    nextPage === currentPage + 1
+  ) {
+    setNextPage(currentPage);
+  }
 
   const handleClick = (number) => {
     setCurrentPage(number);
+    setNextPage(number === totalPages ? number : number + 1);
+    setPrevPage(number === 1 ? number : number - 1);
   };
 
   const renderPageNumbers = pages.map((_, index) => {
     const number = index + 1;
     return (
-      <li className={currentPage == number ? "gggg" : null}>
+      <li className={currentPage === number ? "gggg" : null}>
         <Link
           className="linkPrevNext"
           to={`/events/${number}`}
@@ -39,27 +57,43 @@ const Pagination = (props) => {
 
   const handleFirst = () => {
     setCurrentPage(1);
+    setNextPage(totalPages > 1 ? 2 : 1);
+    setPrevPage(1);
   };
 
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+  const handlePrev = (cur) => {
+    if (cur > 1) {
+      setCurrentPage(cur - 1);
+      setNextPage(cur);
+      setPrevPage(cur === 2 ? cur - 1 : cur - 2);
     }
   };
 
-  const handleNext = () => {
-    if (currentPage < props.totalPages) {
-      setCurrentPage(currentPage + 1);
+  const handleNext = (cur) => {
+    if (cur < totalPages) {
+      setCurrentPage(cur + 1);
+      setPrevPage(cur);
+      setNextPage(cur === totalPages - 1 ? cur + 1 : cur + 2);
     }
   };
 
   const handleLast = () => {
-    setCurrentPage(props.totalPages);
+    setCurrentPage(totalPages);
+    setNextPage(totalPages);
+    setPrevPage(totalPages - 1);
   };
 
   return (
     <div>
-      {currentPage}
+      Prev:{prevPage}
+      <br />
+      Current:{currentPage}
+      <br />
+      Next:{nextPage}
+      <br />
+      Initial:{initialPage}
+      <br />
+      total: {totalPages}
       <ul className="pageNumbers">
         {/* << (first) */}
         <li>
@@ -75,8 +109,10 @@ const Pagination = (props) => {
         <li>
           <Link
             className="linkPrevNext"
-            onClick={handlePrev}
-            to={`/events/${currentPage - 1}`}
+            onClick={() => {
+              handlePrev(currentPage);
+            }}
+            to={`/events/${prevPage}`}
           >
             &#60;
           </Link>
@@ -86,8 +122,10 @@ const Pagination = (props) => {
         <li>
           <Link
             className="linkPrevNext"
-            onClick={handleNext}
-            to={`/events/${currentPage + 1}`}
+            onClick={() => {
+              handleNext(currentPage);
+            }}
+            to={`/events/${nextPage}`}
           >
             &#62;
           </Link>
@@ -97,7 +135,7 @@ const Pagination = (props) => {
           <Link
             className="linkPrevNext"
             onClick={handleLast}
-            to={`/events/${props.totalPages}`}
+            to={`/events/${totalPages}`}
           >
             &#62;&#62;
           </Link>

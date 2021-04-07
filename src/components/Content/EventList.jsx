@@ -73,7 +73,7 @@ const EventList = (props) => {
           totalPages={state.fullAPI.total_pages}
           next={state.fullAPI.next}
           previous={state.fullAPI.previous}
-          currentPage={props.match.params.page}
+          currentPage={parseInt(props.match.params.page, 10)}
         />
       </div>
     </main>
