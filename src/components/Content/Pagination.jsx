@@ -23,18 +23,6 @@ const Pagination = (props) => {
   );
 
   const [maxPages, setMaxTotalPages] = useState(5);
-  // const [displayPages, setDisplayPages] = useState(null);
-
-  // const matrix = new Array(Math.ceil(totalPages / maxPages));
-
-  // for (var i = 0; i < matrix.length; i++) {
-  //   matrix[i] = new Array(maxPages);
-  // }
-
-  // console.log(matrix);
-
-  const pagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
-  console.log(pagesArray);
 
   const arrayToMatrix = (array, rowsSize) => {
     let matrix = [],
@@ -50,13 +38,17 @@ const Pagination = (props) => {
     return matrix;
   };
 
+  // [1,2,3,4,5,6,7,8]
+  const pagesArray = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  // [[1,2,3,4,5],
+  // [6,7,8],]
   const pagesMatrix = arrayToMatrix(pagesArray, maxPages);
-  console.log(pagesMatrix);
 
   // fills array with trash, size===totalPages
   const pages = new Array(totalPages).fill();
 
-  // ! this is a crutch as a BUGFIX
+  // ! this is a CRUTCH as a BUGFIX
   if (
     currentPage === initialPage &&
     currentPage === totalPages &&
@@ -120,15 +112,6 @@ const Pagination = (props) => {
 
   return (
     <div>
-      Prev:{prevPage}
-      <br />
-      Current:{currentPage}
-      <br />
-      Next:{nextPage}
-      <br />
-      Initial:{initialPage}
-      <br />
-      total: {totalPages}
       <ul className="pageNumbers">
         {/* << (first) */}
         <li>
