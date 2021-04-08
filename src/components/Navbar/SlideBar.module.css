@@ -1,0 +1,72 @@
+.slideWrapper {
+    position: relative;
+}
+
+#checkbox1 {
+    display: none;
+}
+
+.panel {
+    position: fixed;
+    top: 0;
+    width: 150px;
+    z-index: 9999;
+    left: -360px;
+    background: purple;
+    height: 100vh;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    transition: all 0.8s;
+    padding: 2em;
+}
+
+.panelBtnClose {
+    cursor: pointer;
+    color: white;
+    font-size: 30px;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 8px;
+    right: 8px;
+    z-index: 1;
+}
+
+.buttonWrap {
+    position: fixed;
+    text-align: center;
+    width: 120px;
+    float: right;
+    top: 0;
+    margin: 10px;
+}
+
+.button1 .btn{
+    content: url('/src/media/menu.png');
+    width: 65px;
+    cursor: pointer;
+    position: relative;
+    padding: 10px;
+}
+
+#checkbox1:checked + .panel + .buttonWrap .button1 .open{
+    transform: rotate(360deg);
+    transition-duration: 2s;
+}
+
+.button1 .open {
+    transform: rotate(0deg);
+    transition-duration: 1.5s;
+}
+
+#checkbox1:checked + .panel {
+    left: 0;
+}
+
+.list {
+    text-align: center;
+}
+
+.link {
+    color: white;
+}
