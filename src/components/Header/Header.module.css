@@ -14,3 +14,21 @@ select {
     position: absolute;
     right: 0;
 }
+
+.head {
+    grid-column: 1/4;
+    grid-row: 1/4;
+    height: 300px;
+    position: relative;
+}
+
+.bgPhoto {
+    position: absolute;
+    height: 300px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url('/src/media/spbstu.jpg');
+    background-position: center;
+}

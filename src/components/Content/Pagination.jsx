@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
-import "./Content.css";
 import "./pagination.css";
 
 const Pagination = (props) => {

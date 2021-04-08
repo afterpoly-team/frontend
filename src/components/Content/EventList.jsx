@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useParams } from "react-router-dom";
-import "./Content.css";
 
+import EventTemplate from "./EventTemplate";
 import { useLanguage } from "../../context/LanguageTranslator";
 import { getLanguage } from "../../utils/getLanguage";
 import Pagination from "./Pagination";
@@ -49,19 +49,12 @@ const EventList = (props) => {
     const eventsList = state.fullAPI.results;
 
     return eventsList.map((item) => (
-      <li key={item.id}>
-        <p>
-          {currentLanguage.title}:{item.title}
-        </p>
-        <p>
-          <a href={item.link} className="aa">
-            {currentLanguage.organizers}
-          </a>
-        </p>
-        <Link to={`/event/${item.id}`} className="aa">
-          {currentLanguage.linkToEvent}
-        </Link>
-      </li>
+      <EventTemplate
+        title={item.title}
+        description={item.description}
+        identificat={item.id}
+        link={item.url}
+      />
     ));
   };
 
