@@ -6,7 +6,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-
+//хуй
 const LanguageContext = createContext();
 
 const useLanguage = () => {
