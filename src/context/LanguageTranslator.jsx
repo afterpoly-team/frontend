@@ -16,19 +16,7 @@ const useLanguage = () => {
 };
 
 const LanguageProvider = (props) => {
-  const [language, setLanguage] = useState(
-    sessionStorage.getItem("langSelect")
-      ? sessionStorage.getItem("langSelect")
-      : "Rus"
-  );
-
-  useEffect(() => {
-    setLanguage(
-      sessionStorage.getItem("langSelect")
-        ? sessionStorage.getItem("langSelect")
-        : "Rus"
-    );
-  }, []);
+  const [language, setLanguage] = useState("Rus");
 
   const value = useMemo(() => [language, setLanguage], [language]);
 

@@ -8,7 +8,7 @@ class Home extends Component {
       <main>
         <div>
           <h2>Добро пожаловать на AfterPoly</h2>
-          <NavLink to="/events/" className={styles.link}>
+          <NavLink to="/events/1" className={styles.link}>
             Мероприятия
           </NavLink>
         </div>

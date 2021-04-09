@@ -38,7 +38,7 @@ const Event = (props) => {
       setLoading(false);
       console.log(error);
     }
-  }, []);
+  }, [currentLanguage.urlName]);
 
   const renderEvent = () => {
     const { result } = state;
