@@ -12,7 +12,7 @@ const Content = () => {
       <div>
         <Route exact path="/" component={Home} />
         <Route exact path="/events/:page" component={EventList} />
-        <Route path path="/event/:id" component={Event} />
+        <Route path="/event/:id" component={Event} />
       </div>
     </div>
   );
