@@ -10,8 +10,10 @@ const initialState = {
     title: "",
     creation_date: "",
     description: "",
+    shortDescription: "",
     event_date: "",
     link: "",
+    mainImage: "",
   },
 };
 
@@ -59,6 +61,12 @@ const Event = (props) => {
             {result.link}
           </a>
         </p>
+        <p>
+          {currentLanguage.shortDescription}: {result.shortDescription}
+        </p>
+        <div>
+          {result.mainImage}
+        </div>
       </div>
     );
   };

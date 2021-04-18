@@ -12,6 +12,7 @@ export default {
 
   //event
   description: "Описание",
+  shortDescription: "Краткое описание",
   date: "Дата",
   link: "Ссылка",
 
