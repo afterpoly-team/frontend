@@ -38,7 +38,6 @@ const EventList = (props) => {
 
             // now useless
             setState((prevState) => ({ ...prevState, fullAPI }));
-            // setDates((prev) => ({ ...prev, list_of_dates }));
             setLoading(false);
         } catch (error) {
             setLoading(false);
@@ -50,13 +49,10 @@ const EventList = (props) => {
     const renderEvents = () => {
         const eventsList = state.fullAPI.results;
 
-        // console.log(typeof eventsList['list_of_dates']);
-        // console.log(typeof eventsList['organizers']);
-
         return eventsList.map((item) => (
             <EventTemplate
                 title={item.title}
-                description={item.description}
+                description={item.short_description}
                 identificat={item.id}
                 link={item.url}
                 list_of_dates={item.list_of_dates}

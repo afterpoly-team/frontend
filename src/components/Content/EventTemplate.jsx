@@ -3,8 +3,27 @@ import styles from './EventTemplate.module.css';
 import { useLanguage } from '../../context/LanguageTranslator';
 import { getLanguage } from '../../utils/getLanguage';
 import { Link } from 'react-router-dom';
+import Tag from './Tag';
 
 const EventTemplate = (props) => {
+    const renderTags = () => {
+        const tagList = props.tags;
+        if (tagList != undefined) {
+            return tagList.map((item) => (
+                <ul>
+                    <Tag tagId={item} />
+                </ul>
+            ));
+        }
+    };
+
+    const renderDates = () => {
+        const dateList = props.list_of_dates;
+        if (dateList != undefined) {
+            return dateList.map((item) => <ul>{item}</ul>);
+        }
+    };
+
     return (
         <div className={styles.cardWrapper}>
             <div className={styles.cardPhoto}>
@@ -18,7 +37,8 @@ const EventTemplate = (props) => {
             </div>
             <div className={styles.title}>{props.title}</div>
             <div className={styles.description}>{props.description}</div>
-            <div>{props.list_of_dates[0]}</div>
+            <ol>{renderDates()}</ol>
+            <ol>{renderTags()}</ol>
         </div>
     );
 };

@@ -8,11 +8,16 @@ const initialState = {
         url: '',
         id: '',
         title: '',
-        creation_date: '',
         description: '',
-        event_date: '',
+        short_description: '',
         link: '',
-        img: '',
+        tags: [],
+        organizers: '',
+        additional_information: '',
+        main_image: '',
+        background_image: '',
+        creation_date: '',
+        list_of_dates: [],
     },
 };
 
@@ -29,7 +34,7 @@ const Event = (props) => {
             const langUrl = currentLanguage.urlName;
             const id = props.match.params.id;
             const res = await fetch(
-                `http://localhost:8000/${langUrl}/api/events/${id}`
+                `http://localhost:8000/${langUrl}/api/online-events/${id}`
             );
             const result = await res.json();
 
