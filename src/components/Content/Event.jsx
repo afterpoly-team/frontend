@@ -33,8 +33,10 @@ const Event = (props) => {
             setLoading(true);
             const langUrl = currentLanguage.urlName;
             const id = props.match.params.id;
+            const eventType = props.eventType;
+
             const res = await fetch(
-                `http://localhost:8000/${langUrl}/api/online-events/${id}`
+                `http://localhost:8000/${langUrl}/api/${eventType}s/${id}`
             );
             const result = await res.json();
 

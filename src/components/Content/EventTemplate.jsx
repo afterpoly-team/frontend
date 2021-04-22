@@ -17,17 +17,10 @@ const EventTemplate = (props) => {
         }
     };
 
-    const renderDates = () => {
-        const dateList = props.list_of_dates;
-        if (dateList != undefined) {
-            return dateList.map((item) => <ul>{item}</ul>);
-        }
-    };
-
     return (
         <div className={styles.cardWrapper}>
             <div className={styles.cardPhoto}>
-                <Link to={`/event/${props.identificat}`} href={props.link}>
+                <Link to={`/${props.eventType}/${props.identificat}`} href={props.link}>
                     <img
                         className={styles.photo}
                         src="https://sun9-62.userapi.com/impg/iu2cN8UC3bFNuKJ8Byv1h_mwqttJtQnTmiFFoA/vAtefHKR3wE.jpg?size=984x984&quality=96&sign=47f0706e7ac9adea851a575e57f3a54c&type=album"
@@ -37,7 +30,6 @@ const EventTemplate = (props) => {
             </div>
             <div className={styles.title}>{props.title}</div>
             <div className={styles.description}>{props.description}</div>
-            <ol>{renderDates()}</ol>
             <ol>{renderTags()}</ol>
         </div>
     );

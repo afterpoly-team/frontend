@@ -31,7 +31,9 @@ const EventList = (props) => {
             setLoading(true);
             const langUrl = currentLanguage.urlName;
             const page = props.match.params.page;
-            const defaultUrl = `http://localhost:8000/${langUrl}/api/online-events/?page=${page}`;
+            const eventType = props.eventType;
+
+            const defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}`;
 
             const res = await fetch(defaultUrl);
             const fullAPI = await res.json();
@@ -55,8 +57,8 @@ const EventList = (props) => {
                 description={item.short_description}
                 identificat={item.id}
                 link={item.url}
-                list_of_dates={item.list_of_dates}
                 tags={item.tags}
+                eventType={props.eventType}
             />
         ));
     };
