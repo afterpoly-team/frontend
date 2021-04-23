@@ -1,7 +1,9 @@
 export default {
   // navbar
   home: "Домой",
-  events: "Мероприятия",
+  onlineEvents: "Онлайн мероприятия",
+  realLifeEvents: "Мероприятия в реальной жизни",
+  places: "Места",
   personalArea: "Личный кабинет",
   contacts: "Контакты",
 

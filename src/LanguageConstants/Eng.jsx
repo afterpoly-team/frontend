@@ -1,7 +1,9 @@
 export default {
   //navbar
   home: "Home",
-  events: "Events",
+  onlineEvents: "Online events",
+  realLifeEvents: "Real-life events",
+  places: "Places",
   personalArea: "Persoinal area",
   contacts: "Contacts",
 
