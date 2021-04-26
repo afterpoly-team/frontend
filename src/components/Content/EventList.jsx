@@ -29,14 +29,13 @@ const EventList = (props) => {
     try {
       setLoading(true);
       const langUrl = currentLanguage.urlName;
-      const page = props.match.params.page;
-      const defaultUrl = `http://localhost:8000/${langUrl}/api/events/?page=${page}`;
+      const defaultUrl = `http://localhost:8000/${langUrl}/api/events/`;
 
       const res = await fetch(defaultUrl);
       const fullAPI = await res.json();
 
       // now useless
-      setState((prevState) => ({ ...prevState, fullAPI }));
+      setState((prev) => ({ ...prev, fullAPI }));
       setLoading(false);
     } catch (error) {
       setLoading(false);

@@ -4,7 +4,6 @@ import SelectLanguage from './SelectLanguage'
 import Search from './Search'
 
 const Header = () => {
-    const pageWidth = document.documentElement.scrollWidth
     return (
         <div className={styles.head}>
             <div className={styles.bgPhoto} />

@@ -4,6 +4,9 @@ export default {
   events: "Мероприятия",
   personalArea: "Личный кабинет",
   contacts: "Контакты",
+  real: "Реальные мероприятия",
+  online: "Онлайн мероприятия",
+  places: "Места",
 
   // event list
   title: "Название",
@@ -18,4 +21,7 @@ export default {
 
   //backend-url support
   urlName: "ru",
+
+  //HomePage
+  start: "Начнём",
 };

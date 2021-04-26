@@ -18,4 +18,7 @@ export default {
 
   //backend-url support
   urlName: "en",
+
+  //HomePage
+  start: "Start",
 };

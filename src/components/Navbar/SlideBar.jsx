@@ -23,59 +23,25 @@ const SlideBar = () => {
                     </li>
                     <hr className={styles.firstLine}/>
                     <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Политех
+                        <NavLink to="/places" className={styles.link}>
+                            {currentLanguage.places}
                         </NavLink>
                         <hr className={styles.line}/>
                     </li>
                     <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Коворкинг
+                        <NavLink to="/online-events" className={styles.link}>
+                            {currentLanguage.online}
                         </NavLink>
                         <hr className={styles.line}/>
                     </li>
                     <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Места
+                        <NavLink to="/ru/api/real-life-events" className={styles.link}
+                                 href="http://127.0.0.1:8000/ru/api/real-life-events/">
+                            {currentLanguage.real}
                         </NavLink>
                         <hr className={styles.line}/>
                     </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Выставки
-                        </NavLink>
-                        <hr className={styles.line}/>
-                    </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Концерты
-                        </NavLink>
-                        <hr className={styles.line}/>
-                    </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Театры
-                        </NavLink>
-                        <hr className={styles.line}/>
-                    </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Кино
-                        </NavLink>
-                        <hr className={styles.line}/>
-                    </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Кафе и еда
-                        </NavLink>
-                        <hr className={styles.line}/>
-                    </li>
-                    <li className={styles.listElements}>
-                        <NavLink to="#s" className={styles.link}>
-                            Бары и клубы
-                        </NavLink>
-                    </li>
-                    <hr className={styles.lastLine} />
+                    <hr className={styles.lastLine}/>
                     <li className={styles.listElements}>
                         <NavLink to="#s" className={styles.link}>
                             {currentLanguage.contacts}
