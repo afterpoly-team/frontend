@@ -60,6 +60,7 @@ const Content = () => {
                 />
                 <Route path path="/contacts/" component={Event} />
             </div>
+
         </div>
     );
 };

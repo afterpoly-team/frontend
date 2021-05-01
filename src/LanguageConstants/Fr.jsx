@@ -14,9 +14,13 @@ export default {
 
   // event
   description: "La description",
+  shortDescription: "Brève description",
   date: "Date",
   link: "Lien",
 
   //backend-url support
   urlName: "fr",
+
+  //HomePage
+  start: "Démarrer",
 };

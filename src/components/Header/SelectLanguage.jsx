@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./SelectLanguage.module.css";
 
 import { useLanguage } from "../../context/LanguageTranslator";
-import { Route, useHistory } from "react-router";
+import { useHistory } from "react-router";
 
 const SelectLanguage = () => {
   const { language, setLanguage } = useLanguage("Rus");
-  const history = useHistory();
 
   return (
     <div className={styles.language}>

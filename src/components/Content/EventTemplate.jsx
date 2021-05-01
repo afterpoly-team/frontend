@@ -18,6 +18,7 @@ const EventTemplate = (props) => {
     };
 
     return (
+        <li>
         <div className={styles.cardWrapper}>
             <div className={styles.cardPhoto}>
                 <Link to={`/${props.eventType}/${props.identificat}`} href={props.link}>
@@ -32,6 +33,7 @@ const EventTemplate = (props) => {
             <div className={styles.description}>{props.description}</div>
             <ol>{renderTags()}</ol>
         </div>
+        </li>
     );
 };
 
