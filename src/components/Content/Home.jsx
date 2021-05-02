@@ -1,100 +1,112 @@
-import React, {useEffect, useState} from "react";
-import styles from "./Home.module.css";
-import RealLifeEvents from "./RealLifeEvents";
+import React, { useEffect, useState } from 'react';
+import styles from './Home.module.css';
+import Tag from './Tag';
+import { useLanguage } from '../../context/LanguageTranslator';
+import { getLanguage } from '../../utils/getLanguage';
+import EventList from './EventList';
 
-let tags = [
-    "Политех",
-    "Бары",
-    "Кино",
-    "Концерт",
-    "Кафе",
-    "Учеба",
-    "Выставки",
-    "Театры",
-]
+const initialTagList = {
+    results: [],
+};
 
-const Home = () => {
-    const [state, setState] = useState(false);
+const ONLINE_EVENT = 'online-event';
+const REAL_LIFE_EVENT = 'real-life-event';
+const PLACE = 'place';
 
+const Home = (props) => {
+    const [flag, setFlag] = useState(false);
+    const [tagList, setTagList] = useState(initialTagList);
+    const { language } = useLanguage();
+    const currentLanguage = getLanguage(language);
+    const [eventType, setEventType] = useState(ONLINE_EVENT);
+    const [queryString, setQueryString] = useState('')
 
-    useEffect(() => {
-        let temp;
+    useEffect(async () => {
         let chkTags = [];
-        tags.map(item => {
-            temp = document.getElementById(item);
-            if (temp.checked) {
-                chkTags.push(item);
-            }
-        })
-    }, [state]);
+
+        try {
+            // console.log('USEEFFECT');
+
+            let temp;
+
+            const langUrl = currentLanguage.urlName;
+            const defaultUrl = `http://localhost:8000/${langUrl}/api/tags/`;
+
+            const res = await fetch(defaultUrl);
+            const results = await res.json();
+
+            setTagList((prev) => ({ ...prev, results }));
+
+            results.map((item) => {
+                temp = document.getElementById(item.id);
+                if (temp.checked) {
+                    chkTags.push("&tags="+item.name);
+                    setQueryString(chkTags.join(''))
+                    console.log(chkTags, " +flag= ", flag);
+                }
+            });
+        } catch (error) {
+            console.log('ERROR IN USEEFFECT HOME', error);
+        }
+    }, [currentLanguage, flag]);
+
+    const renderTags = () => {
+        const tags = tagList.results;
+
+        // console.log('RENDERTAGS');
+
+        if (tags != undefined) {
+            return tags.map((item) => (
+                <div className={styles.tag}>
+                    <input
+                        type="checkbox"
+                        id={item.id}
+                        onChange={() => {
+                            if (flag === false) setFlag(true);
+                            else setFlag(false);
+                        }}
+                    />
+                    {item.name}
+                </div>
+            ));
+        }
+    };
 
     return (
         <div>
-            <div className={styles.filter}>
-                <label htmlFor="poly">
-                    <div className={styles.tag}>
-                        <input type="checkbox" id="Политех" onChange={() => {
-                            if (state === false) setState(true);
-                            else setState(false);
-                        }}/>
-                        Политех
-                    </div>
-                </label>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Бары" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Бары
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Кино" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Кино
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Концерт" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Концерты
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Кафе" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Кафе
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Учеба" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Учеба
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Выставки" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Выставки
-                </div>
-                <div className={styles.tag}>
-                    <input type="checkbox" id="Театры" onChange={() => {
-                        if (state === false) setState(true);
-                        else setState(false);
-                    }}/>
-                    Театры
-                </div>
+            <div className={styles.filter}>{renderTags()}</div>
+            <div>
+                <select
+                    onChange={(event) => {
+                        if (
+                            event.target.value === currentLanguage.onlineEvents
+                        ) {
+                            setEventType(ONLINE_EVENT);
+                        } else if (
+                            event.target.value ===
+                            currentLanguage.realLifeEvents
+                        ) {
+                            setEventType(REAL_LIFE_EVENT);
+                        } else if (
+                            event.target.value === currentLanguage.places
+                        ) {
+                            setEventType(PLACE);
+                        }
+                    }}
+                >
+                    <option>{currentLanguage.onlineEvents}</option>
+                    <option>{currentLanguage.realLifeEvents}</option>
+                    <option>{currentLanguage.places}</option>
+                </select>
+                <br />
+                <br />
+                <br />
             </div>
-            <div className={styles.content}>
-                <RealLifeEvents />
+            <div>
+                <EventList eventType={eventType} page="1" queryString={queryString}/>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Home;

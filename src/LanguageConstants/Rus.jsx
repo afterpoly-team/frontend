@@ -6,9 +6,6 @@ export default {
   places: "Места",
   personalArea: "Личный кабинет",
   contacts: "Контакты",
-  real: "Реальные мероприятия",
-  online: "Онлайн мероприятия",
-  places: "Места",
 
   // event list
   title: "Название",
