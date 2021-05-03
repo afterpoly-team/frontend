@@ -95,6 +95,7 @@ const EventList = (props) => {
                             ? parseInt(props.match.params.page, 10)
                             : props.page
                     }
+                    eventType = {props.eventType}
                 />
             </div>
         </main>

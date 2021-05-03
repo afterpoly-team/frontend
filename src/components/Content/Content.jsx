@@ -5,13 +5,9 @@ import Event from './Event';
 import EventList from './EventList';
 import Home from './Home';
 import EventTemplate from './EventTemplate';
+import {ONLINE_EVENT, REAL_LIFE_EVENT, PLACE} from '../../consts/Constants'
 
 const Content = () => {
-  
-    const ONLINE_EVENT = 'online-event';
-    const REAL_LIFE_EVENT = 'real-life-event';
-    const PLACE = 'place';
-
     return (
         <div className={styles.cont}>
             <div>

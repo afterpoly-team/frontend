@@ -4,69 +4,69 @@ import Tag from './Tag';
 import { useLanguage } from '../../context/LanguageTranslator';
 import { getLanguage } from '../../utils/getLanguage';
 import EventList from './EventList';
+import {ONLINE_EVENT, REAL_LIFE_EVENT, PLACE} from '../../consts/Constants'
 
-const initialTagList = {
-    results: [],
-};
-
-const ONLINE_EVENT = 'online-event';
-const REAL_LIFE_EVENT = 'real-life-event';
-const PLACE = 'place';
+const initialTagList =  [];
 
 const Home = (props) => {
-    const [flag, setFlag] = useState(false);
     const [tagList, setTagList] = useState(initialTagList);
     const { language } = useLanguage();
     const currentLanguage = getLanguage(language);
     const [eventType, setEventType] = useState(ONLINE_EVENT);
-    const [queryString, setQueryString] = useState('')
+    const [queryString, setQueryString] = useState('');
+    const [checkboxes, setCheckboxes] = useState({});
 
     useEffect(async () => {
-        let chkTags = [];
-
         try {
+            
+            setTagList(initialTagList);
             // console.log('USEEFFECT');
-
-            let temp;
-
             const langUrl = currentLanguage.urlName;
             const defaultUrl = `http://localhost:8000/${langUrl}/api/tags/`;
 
             const res = await fetch(defaultUrl);
             const results = await res.json();
+            // [{..}]
+            // const checkboxes = results.map(({id, name}) => ({ id, name, checked: false }));
+            // {name: bool, }
+            //const checkboxes = results.reduce((acc, {id, name}) => ({ ...acc, [name]: false }), {});
+ 
+            setTagList(results);
+        } catch (error) {
+            console.log('ERROR IN USEEFFECT1 HOME', error);
+        }
+    }, [currentLanguage]);
 
-            setTagList((prev) => ({ ...prev, results }));
-
-            results.map((item) => {
-                temp = document.getElementById(item.id);
-                if (temp.checked) {
-                    chkTags.push("&tags="+item.name);
-                    setQueryString(chkTags.join(''))
-                    console.log(chkTags, " +flag= ", flag);
+    useEffect(async () => {
+        try {
+            let chkTags = [];
+            Object.keys(checkboxes).forEach((key) => {
+                if (checkboxes[key] === true) {
+                    chkTags.push("&tags="+key);
                 }
             });
+            setQueryString(chkTags.join(''));
+            console.log(chkTags);
         } catch (error) {
-            console.log('ERROR IN USEEFFECT HOME', error);
+            console.log('ERROR IN USEEFFECT2 HOME', error);
         }
-    }, [currentLanguage, flag]);
+    }, [checkboxes]);
 
     const renderTags = () => {
-        const tags = tagList.results;
 
         // console.log('RENDERTAGS');
 
-        if (tags != undefined) {
-            return tags.map((item) => (
+        if (tagList !== undefined) {
+            return tagList.map(({name}) => (
                 <div className={styles.tag}>
                     <input
                         type="checkbox"
-                        id={item.id}
+                        checked={checkboxes[name]}
                         onChange={() => {
-                            if (flag === false) setFlag(true);
-                            else setFlag(false);
+                            setCheckboxes(prev =>({ ...prev, [name]: !checkboxes[name] }))
                         }}
                     />
-                    {item.name}
+                    {name}
                 </div>
             ));
         }
@@ -103,7 +103,11 @@ const Home = (props) => {
                 <br />
             </div>
             <div>
-                <EventList eventType={eventType} page="1" queryString={queryString}/>
+                <EventList
+                    eventType={eventType}
+                    page="1"
+                    queryString={queryString}
+                />
             </div>
         </div>
     );

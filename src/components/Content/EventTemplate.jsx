@@ -4,6 +4,8 @@ import { useLanguage } from '../../context/LanguageTranslator';
 import { getLanguage } from '../../utils/getLanguage';
 import { Link } from 'react-router-dom';
 import Tag from './Tag';
+import {NOT_FOUND_IMAGE, NOT_FOUND_IMAGE_LOCAL} from '../../consts/Constants'
+
 
 const EventTemplate = (props) => {
     const renderTags = () => {
@@ -17,6 +19,8 @@ const EventTemplate = (props) => {
         }
     };
 
+    console.log(props.image)
+
     return (
         <li>
             <div className={styles.cardWrapper}>
@@ -28,9 +32,8 @@ const EventTemplate = (props) => {
                         <img
                             className={styles.photo}
                             src={
-                                //! почему тернарная хуйня не работает ?????????????
                                 props.image ===
-                                'http://127.0.0.1:8000/media/img_not_found'
+                                NOT_FOUND_IMAGE_LOCAL
                                     ? 'https://sun9-62.userapi.com/impg/iu2cN8UC3bFNuKJ8Byv1h_mwqttJtQnTmiFFoA/vAtefHKR3wE.jpg?size=984x984&quality=96&sign=47f0706e7ac9adea851a575e57f3a54c&type=album'
                                     : props.image
                             }
