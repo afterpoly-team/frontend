@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import EventTemplate from './EventTemplate';
 import { useLanguage } from '../../context/LanguageTranslator';
@@ -29,11 +29,29 @@ const EventList = (props) => {
     useEffect(async () => {
         try {
             setLoading(true);
+            console.log('EVENT LIST');
             const langUrl = currentLanguage.urlName;
-            const page = props.match.params.page;
+            let page;
+            if (props.match && props.match.params.page) {
+                page = props.match.params.page;
+            } else {
+                page = props.page;
+            }
+
+            let queryString;
+            if (props.queryString) {
+                queryString = props.queryString;
+            }
             const eventType = props.eventType;
 
-            const defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}`;
+            let defaultUrl;
+            if (queryString){
+                defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}${queryString}`;
+            }
+            else{
+            defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}`;
+            }
+            console.log('EVENT LIST      ', defaultUrl);
 
             const res = await fetch(defaultUrl);
             const fullAPI = await res.json();
@@ -43,9 +61,9 @@ const EventList = (props) => {
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            console.log(error);
+            console.log('ERROR IN EVENT LIST', error);
         }
-    }, [params.page, currentLanguage]);
+    }, [params.page, currentLanguage, props.eventType, props.page, props.queryString]);
     // [] mounting by initialization once
 
     const renderEvents = () => {
@@ -59,6 +77,7 @@ const EventList = (props) => {
                 link={item.url}
                 tags={item.tags}
                 eventType={props.eventType}
+                image={item.main_image}
             />
         ));
     };
@@ -71,7 +90,12 @@ const EventList = (props) => {
                     totalPages={state.fullAPI.total_pages}
                     next={state.fullAPI.next}
                     previous={state.fullAPI.previous}
-                    currentPage={parseInt(props.match.params.page, 10)}
+                    currentPage={
+                        props.match && props.match.params.page
+                            ? parseInt(props.match.params.page, 10)
+                            : props.page
+                    }
+                    eventType = {props.eventType}
                 />
             </div>
         </main>

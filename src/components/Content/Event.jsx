@@ -67,7 +67,7 @@ const Event = (props) => {
                         {result.link}
                     </a>
                 </p>
-                <img src={result.img} height="500" width="700" alt="1" />
+                <img src={result.main_image} height="500" width="700" alt="1" />
             </div>
         );
     };
@@ -76,6 +76,7 @@ const Event = (props) => {
         <main>
             <div>{renderEvent()}</div>
         </main>
+
     );
 };
 

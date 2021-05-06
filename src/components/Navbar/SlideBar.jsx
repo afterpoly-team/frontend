@@ -36,6 +36,7 @@ const SlideBar = () => {
                             className={styles.link}
                         >
                             {currentLanguage.onlineEvents}
+
                         </NavLink>
                         <hr className={styles.line} />
                     </li>
@@ -45,15 +46,18 @@ const SlideBar = () => {
                             className={styles.link}
                         >
                             {currentLanguage.realLifeEvents}
+
                         </NavLink>
                         <hr className={styles.line} />
                     </li>
                     <li className={styles.listElements}>
                         <NavLink to={`/${PLACE}s/1`} className={styles.link}>
                             {currentLanguage.places}
+
                         </NavLink>
+                        <hr className={styles.line}/>
                     </li>
-                    <hr className={styles.lastLine} />
+                    <hr className={styles.lastLine}/>
                     <li className={styles.listElements}>
                         <NavLink to="#s" className={styles.link}>
                             {currentLanguage.contacts}

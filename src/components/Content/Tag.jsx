@@ -38,7 +38,6 @@ const Tag = (props) => {
     }, [currentLanguage.urlName]);
 
     const renderTag = () => {
-        console.log(state);
         return <span>{state.result.name}</span>;
     };
 
