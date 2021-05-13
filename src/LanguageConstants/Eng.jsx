@@ -15,8 +15,11 @@ export default {
   //event
   description: "Description",
   shortDescription: "Short description",
-  date: "Date",
+  dates: "Dates",
   link: "Link",
+  creationDate: "Creation date",
+  aditionalInformation: "Aditional information",
+  noDatesAvaliable: "No dates avaliable",
 
   //backend-url support
   urlName: "en",

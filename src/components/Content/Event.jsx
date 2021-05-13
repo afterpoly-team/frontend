@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Content.module.css';
 import { useLanguage } from '../../context/LanguageTranslator';
 import { getLanguage } from '../../utils/getLanguage';
+import Tag from './Tag';
 
 const initialState = {
     result: {
@@ -28,6 +29,8 @@ const Event = (props) => {
     const [state, setState] = useState(initialState);
     const [loading, setLoading] = useState(false);
 
+    const [tagList, setTagList] = useState([]);
+
     useEffect(async () => {
         try {
             setLoading(true);
@@ -40,6 +43,10 @@ const Event = (props) => {
             );
             const result = await res.json();
 
+            setTagList(result.tags);
+            console.log(result.tags);
+            console.log(tagList);
+
             setState((prevState) => ({ ...prevState, result }));
             setLoading(false);
         } catch (error) {
@@ -48,6 +55,29 @@ const Event = (props) => {
         }
     }, [currentLanguage.urlName]);
 
+    const renderTags = () => {
+        if (tagList !== undefined) {
+            return tagList.map((item) => (
+                <ul>
+                    <Tag tagId={item} />
+                </ul>
+            ));
+        }
+    };
+
+    const renderDates = () => {
+        const datesList = state.result.list_of_dates;
+        if (datesList !== undefined && datesList.length > 0) {
+            return datesList.map((item) => <ul>{item}</ul>);
+        }
+        // else{
+        //     return 
+        //     <span>
+        //         {currentLanguage.noDatesAvaliable}
+        //     </span>
+        // }
+    };
+
     const renderEvent = () => {
         const { result } = state;
 
@@ -55,19 +85,31 @@ const Event = (props) => {
             <div>
                 <h2>{result.title}</h2>
                 <p>
+                    {currentLanguage.creationDate}:{' '}
+                    {new Date(result.creation_date).toLocaleDateString()}
+                </p>
+                <p>
                     {currentLanguage.description}: {result.description}
                 </p>
                 <p>
-                    {currentLanguage.date}:{' '}
-                    {new Date(result.event_date).toLocaleDateString()}
+                    {currentLanguage.organizers}:{result.organizers}
                 </p>
+                <p>
+                    {currentLanguage.aditionalInformation}:
+                    {result.additional_information}
+                </p>
+
                 <p>
                     {currentLanguage.link}:{' '}
                     <a href={result.link} className="aa">
                         {result.link}
                     </a>
                 </p>
+                <p>
+                    {currentLanguage.dates}:<ol>{renderDates()}</ol>
+                </p>
                 <img src={result.main_image} height="500" width="700" alt="1" />
+                <ol>{renderTags()}</ol>
             </div>
         );
     };
@@ -76,7 +118,6 @@ const Event = (props) => {
         <main>
             <div>{renderEvent()}</div>
         </main>
-
     );
 };
 

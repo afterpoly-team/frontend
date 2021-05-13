@@ -11,6 +11,8 @@ const EventTemplate = (props) => {
     const renderTags = () => {
         const tagList = props.tags;
         if (tagList != undefined) {
+            console.log("TITLE:", props.title)
+            console.log("tagList:", tagList)
             return tagList.map((item) => (
                 <ul>
                     <Tag tagId={item} />
@@ -18,8 +20,6 @@ const EventTemplate = (props) => {
             ));
         }
     };
-
-    console.log(props.image)
 
     return (
         <li>
@@ -43,7 +43,7 @@ const EventTemplate = (props) => {
                 </div>
                 <div className={styles.title}>{props.title}</div>
                 <div className={styles.description}>{props.description}</div>
-                <ol>{renderTags()}</ol>
+                {/* <ol>{renderTags()}</ol> */}
             </div>
         </li>
     );
