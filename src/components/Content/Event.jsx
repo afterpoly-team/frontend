@@ -3,6 +3,11 @@ import './Content.module.css';
 import { useLanguage } from '../../context/LanguageTranslator';
 import { getLanguage } from '../../utils/getLanguage';
 import Tag from './Tag';
+import {
+    NOT_FOUND_IMAGE,
+    NOT_FOUND_IMAGE_LOCAL,
+    IMG_PLACEHOLDER_FRONT,
+} from '../../consts/Constants';
 
 const initialState = {
     result: {
@@ -71,7 +76,7 @@ const Event = (props) => {
             return datesList.map((item) => <ul>{item}</ul>);
         }
         // else{
-        //     return 
+        //     return
         //     <span>
         //         {currentLanguage.noDatesAvaliable}
         //     </span>
@@ -108,7 +113,16 @@ const Event = (props) => {
                 <p>
                     {currentLanguage.dates}:<ol>{renderDates()}</ol>
                 </p>
-                <img src={result.main_image} height="500" width="700" alt="1" />
+                <img
+                    src={
+                        result.main_image === NOT_FOUND_IMAGE_LOCAL
+                            ? IMG_PLACEHOLDER_FRONT
+                            : result.main_image
+                    }
+                    alt="1"
+                    height="500"
+                    width="700"
+                />
                 <ol>{renderTags()}</ol>
             </div>
         );
