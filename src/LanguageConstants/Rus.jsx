@@ -15,8 +15,12 @@ export default {
   //event
   description: "Описание",
   shortDescription: "Краткое описание",
-  date: "Дата",
+  dates: "Даты",
   link: "Ссылка",
+  creationDate: "Дата создания",
+  aditionalInformation: "Дополнительная информация",
+  noDatesAvaliable: "Нет доступных дат проведения",
+
 
   //backend-url support
   urlName: "ru",

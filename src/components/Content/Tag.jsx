@@ -22,12 +22,15 @@ const Tag = (props) => {
         try {
             setLoading(true);
             const langUrl = currentLanguage.urlName;
-            // const url = props.match.params.tagUrl;
             const id = props.tagId;
+            console.log("TAG_ID_PROP:", props.tagId )
+
             const res = await fetch(
                 `http://localhost:8000/${langUrl}/api/tags/${id}`
             );
             const result = await res.json();
+
+            console.log("TAG_ID:", result.id, " TAG_NAME:", result.name )
 
             setState((prevState) => ({ ...prevState, result }));
             setLoading(false);
@@ -38,7 +41,11 @@ const Tag = (props) => {
     }, [currentLanguage.urlName]);
 
     const renderTag = () => {
-        return <span>{state.result.name}</span>;
+        return (
+            <div>
+                <span>{state.result.name}</span>
+            </div>
+        )
     };
 
     return (
