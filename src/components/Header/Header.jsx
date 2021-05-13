@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <div className={styles.head}>
             <div className={styles.bgPhoto} />
-            <Search/>
+            {/* <Search/> */}
             <SelectLanguage/>
         </div>
     )

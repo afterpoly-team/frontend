@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import styles from './Search.module.css'
 
-class Search extends Component {
-    render() {
+
+const Search = (props) => {
         return (
             <div className={styles.searchArea}>
                 <form className={styles.form}>
@@ -12,6 +12,5 @@ class Search extends Component {
             </div>
         )
     }
-}
 
 export default Search

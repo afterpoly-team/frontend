@@ -46,7 +46,7 @@ const EventList = (props) => {
 
             let defaultUrl;
             if (queryString){
-                defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}${queryString}`;
+                defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}${queryString}&ordering=list_of_dates`;
             }
             else{
             defaultUrl = `http://localhost:8000/${langUrl}/api/${eventType}s/?page=${page}`;
